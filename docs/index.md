@@ -1,20 +1,31 @@
 ---
-page_title: "scaffolding Provider"
+page_title: "Netcup SCP Provider"
 subcategory: ""
 description: |-
   
 ---
 
-# scaffolding Provider
+# Provider for Netcup SCP API
 
+This is a [Terraform](https://terraform.io) provider for the [Netcup](https://www.netcup.de/) SCP [webservice](https://www.netcup-wiki.de/wiki/Server_Control_Panel_(SCP)#Webservice).
 
-
-## Example Usage
-
+## Example usage
 ```terraform
-provider "scaffolding" {
-  # example configuration here
+terraform {
+  required_providers {
+    netcup-ccp = {
+      source = "rincedd/netcup-scp"
+    }
+  }
 }
-```
 
-## Schema
+provider "netcup-scp" {
+  login_name = "123456"     # Netcup customer number
+  password   = "secret"     # SCP webservice password
+}
+
+data "netcup_vserver" "my_server" {
+  server_name = "v12345678901234567"
+}
+
+```
